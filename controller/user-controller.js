@@ -43,22 +43,26 @@ module.exports.createUser =async (req, res)=>{
 }
 
 //Sign in OR create a session
-module.exports.createSession =async (req, res)=>{
-    const {email, password} = req.body;
-    console.log(`${email}`)
-    //check if user registered
-    const userExists = await userModel.findOne({email});
-    if(userExists){
-        if(password!=userExists.password){
-            console.log('wrong password');
-            res.redirect('/sign-in');
-        }else{
-            res.cookie('user_id',userExists?.id);
-            console.log('Signed In Successfully, Cookie set');
-            res.redirect('/profile');
-        }
-    }else{
-        res.redirect('/sign-up');
-    }
+// module.exports.createSession =async (req, res)=>{
+//     const {email, password} = req.body;
+//     console.log(`${email}`)
+//     //check if user registered
+//     const userExists = await userModel.findOne({email});
+//     if(userExists){
+//         if(password!=userExists.password){
+//             console.log('wrong password');
+//             res.redirect('/sign-in');
+//         }else{
+//             res.cookie('user_id',userExists?.id);
+//             console.log('Signed In Successfully, Cookie set');
+//             res.redirect('/profile');
+//         }
+//     }else{
+//         res.redirect('/sign-up');
+//     }
     
+// }
+
+module.exports.createSession =async (req, res)=>{
+    return res.redirect('/profile');
 }
